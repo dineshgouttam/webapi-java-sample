@@ -1,0 +1,11 @@
+entity/Metadata.class
+entity/Fulfillment.class
+hello/HelloWorldConfiguration.class
+entity/Status.class
+hello/HelloWorldController.class
+entity/Menu.class
+entity/Result.class
+entity/Parameters.class
+entity/Order.class
+entity/ResponseData.class
+hello/WebhookResponse.class
