@@ -39,12 +39,7 @@ public class Result {
 		this.actionIncomplete = actionIncomplete;
 	}
 
-	public Parameters getContexts() {
-		return contexts;
-	}
-	public void setContexts(Parameters contexts) {
-		this.contexts = contexts;
-	}
+
 	public Metadata getMetadata() {
 		return metadata;
 	}
@@ -69,7 +64,14 @@ public class Result {
 	private String action;
 	private String actionIncomplete;
 	private Parameters parameters;
-	private Parameters contexts;
+	private Contexts[] contexts;
+	
+	public Contexts[] getContexts() {
+		return contexts;
+	}
+	public void setContexts(Contexts[] contexts) {
+		this.contexts = contexts;
+	}
 	private Metadata metadata;
 	private Fulfillment fulfillment;
 	private Double score;

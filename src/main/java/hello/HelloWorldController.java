@@ -62,33 +62,30 @@ public class HelloWorldController {
                                order.setUser_name(requestBody.getResult().getParameters().getUser_name());
                             List<Order> orderList = new ArrayList<Order>();
                             orderList.add(order);
-                         int cost=0;
-                        String image_url="";                        
-                        
-                        Iterator<Menu> it = list.iterator();
+                         int[] cost=new int[30];
+                        String[] image_url=new String[30];                     
+                       
                         double grandTotal=0.00;
-                       for (Menu obj : list) 
-						
+                       for (Menu obj : list) 						
 					    {  
 	                          if(order.getName().equals(obj.getDrinkName())){
-	                              cost= order.getNumber() * obj.getPrice();
-	                              image_url = obj.getImage_url();  
-	                              grandTotal = grandTotal+cost + (.1 * cost);
-	                           }                        
-	                    
-                        }                       
+	                              cost[0]= order.getNumber() * obj.getPrice();
+	                              image_url[0] = obj.getImage_url();  
+	                              grandTotal = grandTotal+cost[0] + (.1 * cost[0]);
+	                           }                       
+	                    }                       
                         
                         if(requestBody.getResult().getAction().equals("getTotalCost"))
                         {
                             speech = "So, your order is "+ orderList.get(0).getNumber()  +" "+ orderList.get(0).getName() +" with "+ orderList.get(0).getIngredients()  + " ingredient and "+ orderList.get(0).getIce() + " ice. This would be a total of "+"$" + grandTotal +" including taxes & 10% gratuity. Should I confirm?";
                            
-                            slack_message = "{ 'text': 'You have ordered: ', 'attachments': [{'text': '*'" +  orderList.get(0).getName()  + "'* with _' "+ orderList.get(0).getIngredients() +" '_ ingredients and _' "+ orderList.get(0).getIce() + "'_ ice' + '\nQuantity: ' "+ orderList.get(0).getNumber() + "'\nCost: $' "+ cost+",'thumb_url':"+ image_url+", 'mrkdwn_in': ['text']},{'fallback': 'Your total order cost is $' "+ grandTotal + "' (including taxes & 10% gratuity). Should I confirm?','title': 'Your total order cost is $' "+ grandTotal + "' (including taxes & 10% gratuity). Should I confirm?','callback_id': 'comic_1234_xyz', 'color': '#3AA3E3', 'attachment_type': 'default',}]}";
+                            slack_message = "{ 'text': 'You have ordered: ', 'attachments': [{'text': '*'" +  orderList.get(0).getName()  + "'* with _' "+ orderList.get(0).getIngredients() +" '_ ingredients and _' "+ orderList.get(0).getIce() + "'_ ice' + '\nQuantity: ' "+ orderList.get(0).getNumber() + "'\nCost: $' "+ cost[0]+",'thumb_url':"+ image_url[0]+", 'mrkdwn_in': ['text']},{'fallback': 'Your total order cost is $' "+ grandTotal + "' (including taxes & 10% gratuity). Should I confirm?','title': 'Your total order cost is $' "+ grandTotal + "' (including taxes & 10% gratuity). Should I confirm?','callback_id': 'comic_1234_xyz', 'color': '#3AA3E3', 'attachment_type': 'default',}]}";
                         }
                        else if(requestBody.getResult().getAction().equals("reorderTotalCost"))
                         {
                             speech = "Your last order was "+ orderList.get(0).getNumber() +" "+ orderList.get(0).getName()  +" with "+ orderList.get(0).getIngredients() + " ingredient and "+ orderList.get(0).getIce()  + " ice. This would be a total of "+"$" + grandTotal +" including taxes & 10% gratuity. Should I repeat same?";                            
                           
-                            slack_message = "{'text': 'Your last order was: ','attachments': [ {'text': '*' "+ orderList.get(0).getName() +" '* with _' "+ orderList.get(0).getIngredients() +" '_ ingredients and _' "+ orderList.get(0).getIce() +" '_ ice' + '\nQuantity: ' "+ orderList.get(0).getNumber() +" '\nCost: $' "+ cost+",'thumb_url':"+ image_url+",'mrkdwn_in': ['text'] },{'fallback': 'Your total order cost is $' "+ grandTotal +" ' (including taxes & 10% gratuity). Should I repeat same?','title': 'Your total order cost is $' "+ grandTotal + "' (including taxes & 10% gratuity). Should I repeat same?','callback_id': 'comic_1234_xyz','color': '#3AA3E3','attachment_type': 'default'}]}";
+                            slack_message = "{'text': 'Your last order was: ','attachments': [ {'text': '*' "+ orderList.get(0).getName() +" '* with _' "+ orderList.get(0).getIngredients() +" '_ ingredients and _' "+ orderList.get(0).getIce() +" '_ ice' + '\nQuantity: ' "+ orderList.get(0).getNumber() +" '\nCost: $' "+ cost[0]+",'thumb_url':"+ image_url[0]+",'mrkdwn_in': ['text'] },{'fallback': 'Your total order cost is $' "+ grandTotal +" ' (including taxes & 10% gratuity). Should I repeat same?','title': 'Your total order cost is $' "+ grandTotal + "' (including taxes & 10% gratuity). Should I repeat same?','callback_id': 'comic_1234_xyz','color': '#3AA3E3','attachment_type': 'default'}]}";
                                        
                         } 
                        else if(requestBody.getResult().getAction().equals("getTotalCostMultiple"))
@@ -104,8 +101,8 @@ public class HelloWorldController {
 	                        List<Order> orderList1 = new ArrayList<Order>();
 	                        double grandTotal1=0.00;
 	                        orderList1.add(order);
-		                     int [] cost1=null;
-		                    String [] image_url1=null;                        
+	                        int[] cost1=new int[30];
+	                        String[] image_url1=new String[30];                       
 		                    
 		                    Iterator<Menu> it1 = list.iterator();
 		                    double grandTota1l=0.00;

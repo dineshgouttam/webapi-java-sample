@@ -19,14 +19,14 @@ public class Fulfillment {
 	public void setDisplayText(String displayText) {
 		this.displayText = displayText;
 	}
-	public String getData() {
+	public Data getData() {
 		return data;
 	}
-	public void setData(String data) {
+	public void setData(Data data) {
 		this.data = data;
 	}
 	private String speech;
 	private String source;
 	private String displayText;
-	private String data;
+	private Data data;
 }
